@@ -3,12 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{16DCD64F-639C-4B05-B36F-930979A6161D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpaceXLaunches", "SpaceXLaunches", "{E298B363-FE2B-4E43-8D4F-A7600F3CF555}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceXLaunches.Domain", "src\SpaceXLaunches\SpaceXLaunches.Domain\SpaceXLaunches.Domain.csproj", "{1577668E-24FC-46B3-8B9C-7133A8924689}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1577668E-24FC-46B3-8B9C-7133A8924689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1577668E-24FC-46B3-8B9C-7133A8924689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1577668E-24FC-46B3-8B9C-7133A8924689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1577668E-24FC-46B3-8B9C-7133A8924689}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E298B363-FE2B-4E43-8D4F-A7600F3CF555} = {16DCD64F-639C-4B05-B36F-930979A6161D}
+		{1577668E-24FC-46B3-8B9C-7133A8924689} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA79FA16-25D8-462E-BA61-212D7D690B27}
 	EndGlobalSection
 EndGlobal
