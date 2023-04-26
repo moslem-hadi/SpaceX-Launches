@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceXLaunches.Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceXLaunches.Infrastructure", "src\SpaceXLaunches\SpaceXLaunches.Infrastructure\SpaceXLaunches.Infrastructure.csproj", "{C0741256-1142-43B9-B2BB-D0D5762EF476}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceXLaunches.WebApi", "src\SpaceXLaunches\SpaceXLaunches.WebApi\SpaceXLaunches.WebApi.csproj", "{F7A5BABF-05D9-4947-BC11-DCA4C5B99F2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{C0741256-1142-43B9-B2BB-D0D5762EF476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0741256-1142-43B9-B2BB-D0D5762EF476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0741256-1142-43B9-B2BB-D0D5762EF476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7A5BABF-05D9-4947-BC11-DCA4C5B99F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7A5BABF-05D9-4947-BC11-DCA4C5B99F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7A5BABF-05D9-4947-BC11-DCA4C5B99F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7A5BABF-05D9-4947-BC11-DCA4C5B99F2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +46,7 @@ Global
 		{1577668E-24FC-46B3-8B9C-7133A8924689} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
 		{4D04D4A0-F303-4799-AB36-E8AB81ED49D4} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
 		{C0741256-1142-43B9-B2BB-D0D5762EF476} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
+		{F7A5BABF-05D9-4947-BC11-DCA4C5B99F2E} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA79FA16-25D8-462E-BA61-212D7D690B27}
