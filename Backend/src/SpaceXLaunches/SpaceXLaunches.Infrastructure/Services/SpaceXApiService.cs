@@ -19,6 +19,7 @@ namespace SpaceXLaunches.Infrastructure.Services
         private readonly HttpClient _apiClient;
         private readonly ILogger<SpaceXApiService> _logger;
         private readonly UrlsConfig _urls;
+        private const string totalCountHeaderKey = "spacex-api-count";
 
         public SpaceXApiService(HttpClient apiClient, ILogger<SpaceXApiService> logger, IOptions<UrlsConfig> urls)
         {
@@ -29,19 +30,21 @@ namespace SpaceXLaunches.Infrastructure.Services
 
         public async Task<PaginatedList<Launch>> GetLaunches(GetAllLaunchesQuery query)
         {
-            var uri = _urls.SpaceXBaseUrl + _urls.LaunchApi;
+            var uri = $"{_urls.SpaceXBaseUrl}{_urls.LaunchApi}?limit={query.PageSize}&offset={query.PageSize * (query.PageNumber - 1)}";
+
             var response = await _apiClient.GetAsync(uri);
 
             response.EnsureSuccessStatusCode();
 
-            var ordersDraftResponse = await response.Content.ReadAsStringAsync();
+            var responseString = await response.Content.ReadAsStringAsync();
 
-            var launches = JsonSerializer.Deserialize<List<Launch>>(ordersDraftResponse, new JsonSerializerOptions
+            var launches = JsonSerializer.Deserialize<List<Launch>>(responseString, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
 
-            return new PaginatedList<Launch>(launches, 0, 0, 0);
+            int.TryParse(response.Headers.GetValues(totalCountHeaderKey)?.FirstOrDefault(), out int totalCount);
+            return new PaginatedList<Launch>(launches, totalCount, query.PageNumber, query.PageSize);
         }
     }
 }

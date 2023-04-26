@@ -1,20 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SpaceXLaunches.Application.Common.Models;
 using SpaceXLaunches.Application.Queries;
 using SpaceXLaunches.Domain.Models;
 
-namespace SpaceXLaunches.WebApi.Controllers
+namespace SpaceXLaunches.WebApi.Controllers;
+
+public class LaunchesController : ApiControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class LaunchesController : ApiControllerBase
+    //TODO: Use DTO instead of Domain models
+    [HttpGet]
+    public async Task<PaginatedList<Launch>> GetAll([FromQuery]GetAllLaunchesQuery query)
     {
-        //TODO: Use DTO
-        [HttpGet]
-        public async Task<PaginatedList<Launch>> GetAll([FromQuery]GetAllLaunchesQuery query)
-        {
-            return await Mediator.Send(query);
-        }
+        return await Mediator.Send(query);
     }
 }

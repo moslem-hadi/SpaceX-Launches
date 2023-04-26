@@ -3,12 +3,16 @@ using MediatR;
 using SpaceXLaunches.Application.Common.Interfaces;
 using SpaceXLaunches.Application.Common.Models;
 using SpaceXLaunches.Domain.Models;
+using System.ComponentModel;
 
 namespace SpaceXLaunches.Application.Queries;
 
 public record GetAllLaunchesQuery : IRequest<PaginatedList<Launch>>
 {
+    [DefaultValue(1)]
     public int PageNumber { get; init; } = 1;
+
+    [DefaultValue(10)]
     public int PageSize { get; init; } = 10;
 }
 
