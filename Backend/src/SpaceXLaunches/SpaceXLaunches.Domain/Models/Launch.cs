@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace SpaceXLaunches.Domain.Models
 {
+    //Version 3 model
     public class Launch
     {
         public int FlightNumber { get; set; }
         public string MissionName { get; set; }
-        public List<object> MissionId { get; set; }
+        //public List<object> MissionId { get; set; }
         public bool Upcoming { get; set; }
         public string LaunchYear { get; set; }
         public int LaunchDateUnix { get; set; }
         public DateTime LaunchDateUtc { get; set; }
         public DateTime LaunchDateLocal { get; set; }
         public bool IsTentative { get; set; }
-        public string TentativeMaxPrecision { get; set; }
-        public bool Tbd { get; set; }
-        public int LaunchWindow { get; set; }
+        //public string TentativeMaxPrecision { get; set; }
+        //public bool Tbd { get; set; }
+        //public int LaunchWindow { get; set; }
         public Rocket Rocket { get; set; }
-        public List<object> Ships { get; set; }
+        public List<string> Ships { get; set; }
         public Telemetry Telemetry { get; set; }
         public LaunchSite LaunchSite { get; set; }
         public bool LaunchSuccess { get; set; }
