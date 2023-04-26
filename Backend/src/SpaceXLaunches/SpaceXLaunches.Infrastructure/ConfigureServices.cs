@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using SpaceXLaunches.Application.Common.Interfaces;
+using SpaceXLaunches.Infrastructure.Configs;
 using SpaceXLaunches.Infrastructure.Services;
 using System;
 
@@ -10,7 +11,9 @@ public static class ConfigureServices
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddScoped<ILaunchService, SpaceXApiService>();
+        services.AddOptions(); 
+       
+        services.AddHttpClient<ILaunchService, SpaceXApiService>();
         return services;
     }
 }

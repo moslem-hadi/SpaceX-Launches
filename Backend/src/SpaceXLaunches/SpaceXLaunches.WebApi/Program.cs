@@ -1,3 +1,5 @@
+using SpaceXLaunches.Infrastructure.Configs;
+
 namespace SpaceXLaunches.WebApi
 {
     public class Program
@@ -12,6 +14,13 @@ namespace SpaceXLaunches.WebApi
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.Configure<UrlsConfig>(
+                builder.Configuration.GetSection("Urls"));
+            builder.Services.AddInfrastructureServices(builder.Configuration);
+            builder.Services.AddApplicationServices();
+
+
 
             var app = builder.Build();
 

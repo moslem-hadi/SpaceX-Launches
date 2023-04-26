@@ -31,7 +31,7 @@ public class Launch
     public LaunchSite LaunchSite { get; set; }
 
     [JsonPropertyName("launch_success")]
-    public bool LaunchSuccess { get; set; }
+    public bool? LaunchSuccess { get; set; }
 
     [JsonPropertyName("launch_failure_details")]
     public LaunchFailureDetails LaunchFailureDetails { get; set; }
@@ -43,6 +43,6 @@ public class Launch
     public string Details { get; set; }
 
     [JsonPropertyName("upcoming")]
-    public bool Upcoming { get; set; }
+    public bool? Upcoming { get; set; }
 
 }
