@@ -7,7 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{16DCD64F-639
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SpaceXLaunches", "SpaceXLaunches", "{E298B363-FE2B-4E43-8D4F-A7600F3CF555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceXLaunches.Domain", "src\SpaceXLaunches\SpaceXLaunches.Domain\SpaceXLaunches.Domain.csproj", "{1577668E-24FC-46B3-8B9C-7133A8924689}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceXLaunches.Domain", "src\SpaceXLaunches\SpaceXLaunches.Domain\SpaceXLaunches.Domain.csproj", "{1577668E-24FC-46B3-8B9C-7133A8924689}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceXLaunches.Application", "src\SpaceXLaunches\SpaceXLaunches.Application\SpaceXLaunches.Application.csproj", "{4D04D4A0-F303-4799-AB36-E8AB81ED49D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceXLaunches.Infrastructure", "src\SpaceXLaunches\SpaceXLaunches.Infrastructure\SpaceXLaunches.Infrastructure.csproj", "{C0741256-1142-43B9-B2BB-D0D5762EF476}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +23,14 @@ Global
 		{1577668E-24FC-46B3-8B9C-7133A8924689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1577668E-24FC-46B3-8B9C-7133A8924689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1577668E-24FC-46B3-8B9C-7133A8924689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D04D4A0-F303-4799-AB36-E8AB81ED49D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D04D4A0-F303-4799-AB36-E8AB81ED49D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D04D4A0-F303-4799-AB36-E8AB81ED49D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D04D4A0-F303-4799-AB36-E8AB81ED49D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0741256-1142-43B9-B2BB-D0D5762EF476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0741256-1142-43B9-B2BB-D0D5762EF476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0741256-1142-43B9-B2BB-D0D5762EF476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0741256-1142-43B9-B2BB-D0D5762EF476}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -26,6 +38,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E298B363-FE2B-4E43-8D4F-A7600F3CF555} = {16DCD64F-639C-4B05-B36F-930979A6161D}
 		{1577668E-24FC-46B3-8B9C-7133A8924689} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
+		{4D04D4A0-F303-4799-AB36-E8AB81ED49D4} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
+		{C0741256-1142-43B9-B2BB-D0D5762EF476} = {E298B363-FE2B-4E43-8D4F-A7600F3CF555}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AA79FA16-25D8-462E-BA61-212D7D690B27}
