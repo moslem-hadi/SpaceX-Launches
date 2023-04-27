@@ -1,4 +1,7 @@
 import { LaunchModel } from '../../models/LaunchModel';
+import Moment from 'moment';
+import YoutubeLinkComponent from '../links/YoutubeLink';
+import WikipediaLinkComponent from '../links/WikipediaLink';
 
 type MyChildProps = {
   item: LaunchModel;
@@ -6,19 +9,42 @@ type MyChildProps = {
 const LaunchComponent = ({ item }: MyChildProps) => {
   return (
     <li className="timeline-event">
-      <div>
+      <div className="flight">
         <label className="timeline-event-icon"></label>
         <div className="timeline-event-copy">
           <p className="timeline-event-thumbnail">
-            {item.flightNumber} - FalconSat
+            Flight: {item.flightNumber} |{' '}
+            {Moment(item.launchDateUtc).format('YYYY MMM d')}
           </p>
           <h3>{item.missionName}</h3>
-          <h4>merlin engine failure</h4>
-          <p>
-            <strong>Details</strong>
-            <br />
-            Engine failure at 33 seconds and loss of vehicle
-          </p>
+          <h4>
+            {item.rocket.rocketName} | {item.rocket.rocketType}
+          </h4>
+          {item.launchSuccess ? (
+            <span className="status success">Success</span>
+          ) : (
+            <>
+              <span className="status failed">Failed</span>
+              <span className="failed-reason">
+                {item.launchFailureDetails.reason}
+              </span>
+            </>
+          )}
+
+          {item.details ? (
+            <p className="details">
+              <strong>Details:</strong>
+              <br />
+              {item.details}
+            </p>
+          ) : (
+            ''
+          )}
+
+          <div className="links">
+            <YoutubeLinkComponent link={item.links.videoLink} />
+            <WikipediaLinkComponent link={item.links.wikipedia} />
+          </div>
         </div>
       </div>
       <img className="flight-image" alt="..." src={item.mainImage} />
