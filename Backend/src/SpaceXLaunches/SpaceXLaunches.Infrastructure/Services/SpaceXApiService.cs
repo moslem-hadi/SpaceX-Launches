@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SpaceXLaunches.Application.Common.Interfaces;
 using SpaceXLaunches.Application.Common.Models;
@@ -20,15 +21,17 @@ namespace SpaceXLaunches.Infrastructure.Services
         private readonly ILogger<SpaceXApiService> _logger;
         private readonly UrlsConfig _urls;
         private const string totalCountHeaderKey = "spacex-api-count";
+        private readonly IMapper _mapper;
 
-        public SpaceXApiService(HttpClient apiClient, ILogger<SpaceXApiService> logger, IOptions<UrlsConfig> urls)
+        public SpaceXApiService(HttpClient apiClient, ILogger<SpaceXApiService> logger, IOptions<UrlsConfig> urls, IMapper mapper)
         {
             _apiClient = apiClient;
             _logger = logger;
             _urls = urls.Value;
+            _mapper = mapper;
         }
 
-        public async Task<PaginatedList<Launch>> GetLaunches(GetAllLaunchesQuery query)
+        public async Task<PaginatedList<LaunchDto>> GetLaunches(GetAllLaunchesQuery query)
         {
             var uri = $"{_urls.SpaceXBaseUrl}{_urls.LaunchApi}?limit={query.PageSize}&offset={query.PageSize * (query.PageNumber - 1)}";
 
@@ -44,7 +47,9 @@ namespace SpaceXLaunches.Infrastructure.Services
             });
 
             int.TryParse(response.Headers.GetValues(totalCountHeaderKey)?.FirstOrDefault(), out int totalCount);
-            return new PaginatedList<Launch>(launches, totalCount, query.PageNumber, query.PageSize);
+
+            var dtos = _mapper.Map<List<LaunchDto>>(launches);
+            return new PaginatedList<LaunchDto>(dtos, totalCount, query.PageNumber, query.PageSize);
         }
     }
 }

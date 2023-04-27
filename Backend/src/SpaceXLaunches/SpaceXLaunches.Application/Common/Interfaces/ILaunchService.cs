@@ -11,6 +11,6 @@ namespace SpaceXLaunches.Application.Common.Interfaces;
 
 public interface ILaunchService
 {
-    Task<PaginatedList<Launch>> GetLaunches(GetAllLaunchesQuery query);
+    Task<PaginatedList<LaunchDto>> GetLaunches(GetAllLaunchesQuery query);
 
 }

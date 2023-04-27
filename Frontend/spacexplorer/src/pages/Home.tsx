@@ -5,8 +5,7 @@ const Home = () => {
   return (
     <>
       <main>
-        <NextLaunchComponent />
-
+        {/* <NextLaunchComponent /> */}
         <TimeLineComponent />
       </main>
     </>
