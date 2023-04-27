@@ -149,7 +149,7 @@ a:visited {
 /*-----------------------------------------*/
 /* Variables */
 /* Fonts */
-
+html,body{min-height: 100%;}
 body {
   font-family: 'Space Mono', monospace, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1em;
@@ -188,7 +188,7 @@ h1.title {
 }
 
 
-header {
+header,.header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -528,3 +528,34 @@ header {
   100% { transform: rotate(360deg) }
 }
     
+ 
+
+.btn-go-home{
+    margin: 15px auto;
+    width: 13rem;
+    padding: 10px 15px;
+    border: 1px solid #FFCB39;
+    font-weight: 400;
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    letter-spacing : 2px;
+    font-size: 11px;
+    background: #000;
+}
+
+.btn-go-home:hover{
+    background-color: #FFCB39;
+    color: #fff;
+    box-shadow: 0px 20px 20px rgba(0,0,0,0.1);
+}
+
+.central-body{
+    padding: 17% 5% 10% 5%;
+    text-align: center;
+}
+
+.image-404{
+    pointer-events: none;
+}

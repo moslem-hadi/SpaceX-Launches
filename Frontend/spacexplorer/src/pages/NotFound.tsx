@@ -1,10 +1,14 @@
+import { Link } from 'react-router-dom';
+
 const NotFound = () => {
   return (
     <>
-      <main>
-        <h1>404</h1>
-        <h3>Not found</h3>
-      </main>
+      <div className="central-body">
+        <img className="image-404" src="/assets/images/404.svg" width="300px" />
+        <Link to="/" className="btn-go-home">
+          GO BACK HOME
+        </Link>
+      </div>
     </>
   );
 };
