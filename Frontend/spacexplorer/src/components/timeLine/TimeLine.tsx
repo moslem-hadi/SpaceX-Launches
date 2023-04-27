@@ -2,18 +2,27 @@ import { useEffect, useState } from 'react';
 import spaceXplorerApi from '../../api/spaceXplorerApi';
 import LaunchComponent from '../launch/Launch';
 import { LaunchModel } from '../../models/LaunchModel';
-import PaginatedListModel from '../../models/PaginatedListModel';
-import { AxiosResponse } from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import LoadingComponent from '../loading/Loading';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TimeLineComponent = () => {
   const [items, setItems] = useState([] as LaunchModel[]);
   const [pageNumber, setPageNumber] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getList();
+    setLoading(true);
+    try {
+      getList();
+    } catch {
+      errorHappened();
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const getList = async () => {
@@ -24,10 +33,19 @@ const TimeLineComponent = () => {
   };
 
   const fetchMoreData = () => {
-    getList();
+    try {
+      getList();
+    } catch {
+      errorHappened();
+    }
   };
 
-  return items?.length ? (
+  const errorHappened = () =>
+    toast.error('Sorry :( An error occurred while loading the data.');
+
+  return loading ? (
+    <LoadingComponent />
+  ) : (
     <InfiniteScroll
       dataLength={items.length}
       next={fetchMoreData}
@@ -40,8 +58,6 @@ const TimeLineComponent = () => {
         ))}
       </div>
     </InfiniteScroll>
-  ) : (
-    <LoadingComponent />
   );
 };
 

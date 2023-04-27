@@ -159,7 +159,7 @@ body {
   color: aliceblue;
   background: #0a0915 url('../public/assets/images/space-bg.jpg') repeat 0 0;
   background-repeat: repeat-y;
-  background-size: cover;
+  background-size: contain;
 
 }
 
@@ -375,6 +375,9 @@ header {
   -moz-box-shadow: inset 40em 0 0 0 #a83279;
   -webkit-box-shadow: inset 40em 0 0 0 #a83279;
   box-shadow: inset 40em 0 0 0 #a83279;
+  padding-left: 1rem !important;
+  -webkit-transition: all .4s linear;
+  transition: all .4s linear
 }
 
 .timeline-event-copy {
@@ -429,14 +432,16 @@ header {
   -webkit-transition-delay: 0.1s;
   transition: box-shadow 0.5s ease-in 0.1s;
   color: white;
-  font-size: 0.75em;
+  font-size: 0.85em;
   background-color: black;
   -moz-box-shadow: inset 0 0 0 0em #ef795a;
   -webkit-box-shadow: inset 0 0 0 0em #ef795a;
   box-shadow: inset 0 0 0 0em #ef795a;
   display: inline-block;
   margin-bottom: 1.2em;
-  padding: 0.25em 1em 0.2em 1em;
+  padding: 0.25em 1em 0.2em 0em;
+  -webkit-transition: all .4s linear;
+  transition: all .4s linear
 }
 
 
@@ -478,12 +483,17 @@ header {
 
 
 .loader-container{
-  
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 3rem 0;
+  flex-direction: column;
+  gap: 2rem;
 }
+.loader-container p{
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.5rem;}
 .loader {
   display: block;
   width: 100px;

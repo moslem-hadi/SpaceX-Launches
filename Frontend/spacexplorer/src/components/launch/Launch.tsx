@@ -1,7 +1,8 @@
 import { LaunchModel } from '../../models/LaunchModel';
 import Moment from 'moment';
-import YoutubeLinkComponent from '../links/YoutubeLink';
-import WikipediaLinkComponent from '../links/WikipediaLink';
+import YoutubeLinkComponent from './links/YoutubeLink';
+import WikipediaLinkComponent from './links/WikipediaLink';
+import DetailLinkComponent from './links/DetailLink';
 
 type MyChildProps = {
   item: LaunchModel;
@@ -42,12 +43,17 @@ const LaunchComponent = ({ item }: MyChildProps) => {
           )}
 
           <div className="links">
+            <DetailLinkComponent flightNumber={item.flightNumber} />
             <YoutubeLinkComponent link={item.links.videoLink} />
             <WikipediaLinkComponent link={item.links.wikipedia} />
           </div>
         </div>
       </div>
-      <img className="flight-image" alt="..." src={item.mainImage} />
+      <img
+        className="flight-image"
+        alt={item.missionName}
+        src={item.mainImage}
+      />
     </div>
   );
 };
