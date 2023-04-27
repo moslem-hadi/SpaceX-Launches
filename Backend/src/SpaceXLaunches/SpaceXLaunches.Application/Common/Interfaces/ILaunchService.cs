@@ -12,5 +12,6 @@ namespace SpaceXLaunches.Application.Common.Interfaces;
 public interface ILaunchService
 {
     Task<PaginatedList<LaunchDto>> GetLaunches(GetAllLaunchesQuery query);
+    Task<LaunchDto?> GetOneLaunch(int flightNumber);
 
 }
