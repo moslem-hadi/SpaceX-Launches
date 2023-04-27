@@ -8,7 +8,7 @@ type MyChildProps = {
 };
 const LaunchComponent = ({ item }: MyChildProps) => {
   return (
-    <li className="timeline-event">
+    <div className="timeline-event">
       <div className="flight">
         <label className="timeline-event-icon"></label>
         <div className="timeline-event-copy">
@@ -26,7 +26,7 @@ const LaunchComponent = ({ item }: MyChildProps) => {
             <>
               <span className="status failed">Failed</span>
               <span className="failed-reason">
-                {item.launchFailureDetails.reason}
+                {item.launchFailureDetails?.reason}
               </span>
             </>
           )}
@@ -48,7 +48,7 @@ const LaunchComponent = ({ item }: MyChildProps) => {
         </div>
       </div>
       <img className="flight-image" alt="..." src={item.mainImage} />
-    </li>
+    </div>
   );
 };
 export default LaunchComponent;
