@@ -1,7 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-
-namespace SpaceXLaunches.WebApi.Controllers;
+﻿namespace SpaceXLaunches.WebApi.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

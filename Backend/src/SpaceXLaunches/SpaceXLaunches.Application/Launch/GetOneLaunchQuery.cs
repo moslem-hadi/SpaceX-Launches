@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using Microsoft.Extensions.Caching.Memory;
-using SpaceXLaunches.Application.Common;
-using SpaceXLaunches.Application.Common.Interfaces;
-using SpaceXLaunches.Application.Common.Models;
-using SpaceXLaunches.Domain.Models;
+﻿using Microsoft.Extensions.Caching.Memory;
 using System.ComponentModel;
 
 namespace SpaceXLaunches.Application.Queries;
@@ -21,6 +15,7 @@ public record GetOneLaunchQuery : IRequest<LaunchDto?>
 
 public class GetOneLaunchQueryHandler : IRequestHandler<GetOneLaunchQuery, LaunchDto?>
 {
+    private const int cacheExpirationMinutes = 10;
     private readonly ILaunchService _launchService;
     private readonly IMemoryCache _memoryCache;
 
@@ -38,7 +33,7 @@ public class GetOneLaunchQueryHandler : IRequestHandler<GetOneLaunchQuery, Launc
             launchData = await _launchService.GetOneLaunch(request.FlightNumber, cancellationToken);
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromMinutes(10));
+                .SetSlidingExpiration(TimeSpan.FromMinutes(cacheExpirationMinutes));
 
             _memoryCache.Set(CacheKeys.SingleLaunch(request.FlightNumber), launchData, cacheEntryOptions);
         }

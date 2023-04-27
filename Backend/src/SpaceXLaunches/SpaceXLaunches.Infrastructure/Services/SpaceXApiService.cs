@@ -9,13 +9,8 @@ using SpaceXLaunches.Application.Common.Models;
 using SpaceXLaunches.Application.Queries;
 using SpaceXLaunches.Domain.Models;
 using SpaceXLaunches.Infrastructure.Configs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using SpaceXLaunches.Application.Dtos;
 
 namespace SpaceXLaunches.Infrastructure.Services
 {
@@ -85,7 +80,28 @@ namespace SpaceXLaunches.Infrastructure.Services
             }
         }
 
+        public async Task<PaginatedList<RocketDto>> GetRockets(GetAllRocketsQuery query, CancellationToken cancellationToken)
+        {
+            int totalCount = 0;
+            var result = new List<RocketDto>();
+            await CreatePolicy().ExecuteAsync(async () =>
+            {
+                var uri = $"{_urls.SpaceXBaseUrl}{_urls.RocketApi}?limit={query.PageSize}&offset={query.PageSize * (query.PageNumber - 1)}";
+                var response = await _apiClient.GetAsync(uri);
+                response.EnsureSuccessStatusCode();
 
+                var responseString = await response.Content.ReadAsStringAsync();
+                var launches = JsonSerializer.Deserialize<List<Rocket>>(responseString, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                int.TryParse(response.Headers.GetValues(totalCountHeaderKey)?.FirstOrDefault(), out totalCount);
+                result = _mapper.Map<List<RocketDto>>(launches);
+            });
+            return new PaginatedList<RocketDto>(result, totalCount, query.PageNumber, query.PageSize);
+
+        }
 
         private AsyncRetryPolicy CreatePolicy(int retries = 3)
         {

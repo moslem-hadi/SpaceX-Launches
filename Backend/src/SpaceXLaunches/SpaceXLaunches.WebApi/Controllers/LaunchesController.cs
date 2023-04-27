@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SpaceXLaunches.Application.Common.Models;
-using SpaceXLaunches.Application.Queries;
-using SpaceXLaunches.Domain.Models;
-
-namespace SpaceXLaunches.WebApi.Controllers;
+﻿namespace SpaceXLaunches.WebApi.Controllers;
 
 public class LaunchesController : ApiControllerBase
 {

@@ -1,9 +1,10 @@
 ﻿using SpaceXLaunches.Application.Common.Mappings;
-using SpaceXLaunches.Domain.Models; 
+using SpaceXLaunches.Domain.Models;
 
-namespace SpaceXLaunches.Application.Queries;
+namespace SpaceXLaunches.Application.Dtos;
 public class LaunchDto : IMapFrom<Launch>
 {
+    //DONT MIND this file!! I don't want to separate the classes into multiple files!!
     public int FlightNumber { get; set; }
 
     public string MissionName { get; set; }
@@ -33,13 +34,13 @@ public class LaunchDto : IMapFrom<Launch>
     public string? MainImage => Links?.MissionPatchSmall;
 
 }
-public class LaunchFailureDetailsDto: IMapFrom<LaunchFailureDetails>
+public class LaunchFailureDetailsDto : IMapFrom<LaunchFailureDetails>
 {
     public int Time { get; set; }
 
     public string Reason { get; set; }
 }
-public class LaunchSiteDto:IMapFrom<LaunchSite>
+public class LaunchSiteDto : IMapFrom<LaunchSite>
 {
     public string SiteId { get; set; }
 
@@ -48,7 +49,7 @@ public class LaunchSiteDto:IMapFrom<LaunchSite>
     public string SiteNameLong { get; set; }
 }
 
-public class LinksDto:IMapFrom<Links>
+public class LinksDto : IMapFrom<Links>
 {
     public string MissionPatch { get; set; }
 
@@ -74,11 +75,31 @@ public class LinksDto:IMapFrom<Links>
 
     public List<object> FlickrImages { get; set; }
 }
-public class RocketDto: IMapFrom<Rocket>
+public class RocketDto : IMapFrom<Rocket>
 {
+    public int Id { get; set; }
+
     public string RocketId { get; set; }
 
     public string RocketName { get; set; }
 
     public string RocketType { get; set; }
+
+    public bool Active { get; set; }
+
+    public int CostPerLaunch { get; set; }
+
+    public int SuccessRatePct { get; set; }
+
+    public string FirstFlight { get; set; }
+
+    public string Country { get; set; }
+
+    public string Company { get; set; }
+
+    public List<string> FlickrImages { get; set; }
+
+    public string Wikipedia { get; set; }
+
+    public string Description { get; set; }
 }

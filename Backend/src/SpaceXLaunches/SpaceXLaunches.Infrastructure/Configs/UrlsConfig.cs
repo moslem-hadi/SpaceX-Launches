@@ -10,6 +10,7 @@ namespace SpaceXLaunches.Infrastructure.Configs
     {
         public string SpaceXBaseUrl { get; set; }
         public string LaunchApi { get; set; }
+        public string RocketApi { get; set; }
 
     }
 }
