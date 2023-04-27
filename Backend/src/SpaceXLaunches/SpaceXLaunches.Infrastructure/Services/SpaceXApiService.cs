@@ -17,6 +17,7 @@ namespace SpaceXLaunches.Infrastructure.Services
     public class SpaceXApiService : ILaunchService
     {
         private const int httpClientTimeoutSeconds = 5;
+        private const int retrySleepDurationSecond = 2;
         private const string totalCountHeaderKey = "spacex-api-count";
 
         private readonly HttpClient _apiClient;
@@ -122,7 +123,7 @@ namespace SpaceXLaunches.Infrastructure.Services
             return Policy.Handle<Exception>().
                 WaitAndRetryAsync(
                     retryCount: retries,
-                    sleepDurationProvider: retry => TimeSpan.FromSeconds(2),
+                    sleepDurationProvider: retry => TimeSpan.FromSeconds(retrySleepDurationSecond),
                     onRetry: (exception, timeSpan, retry, ctx) =>
                     {
                         _logger.LogWarning(exception, "Exception {ExceptionType} with message {Message} detected on attempt {retry} of {retries}", exception.GetType().Name, exception.Message, retry, retries);

@@ -10,7 +10,7 @@ public class LaunchesController : ApiControllerBase
 
     [HttpGet("{flightNumber}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<LaunchDto>> GetByFlightNumber(int flightNumber, CancellationToken cancellationToken)
     {
         var launch = await Mediator.Send(new GetOneLaunchQuery(flightNumber), cancellationToken);
@@ -21,6 +21,8 @@ public class LaunchesController : ApiControllerBase
     }
 
     [HttpGet("Next")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<LaunchDto>> GetNextLaunch(CancellationToken cancellationToken)
     {
         var launch = await Mediator.Send(new GetNextLaunchQuery(), cancellationToken);
