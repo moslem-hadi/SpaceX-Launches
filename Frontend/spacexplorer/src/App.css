@@ -197,6 +197,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   width: 30vw;
+  min-height: 250px;
 }
 
 .logo {
@@ -636,6 +637,15 @@ h1.flight-title {
 
 .rockets .rocket .img {
   border-radius: 0.25rem 0.25rem 0 0;
+  width: 100%;
+  object-fit: cover;
+  height: 200px;
+}
+.rockets .rocket .country{
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .p-3 {

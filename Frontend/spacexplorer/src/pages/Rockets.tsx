@@ -7,6 +7,7 @@ import LoadingComponent from '../components/loading/Loading';
 import YoutubeLinkComponent from '../components/launch/links/YoutubeLink';
 import WikipediaLinkComponent from '../components/launch/links/WikipediaLink';
 import Moment from 'moment';
+import RocketComponent from '../components/rockets/Rocket';
 
 const RocketsPage = (props: any) => {
   const [rockets, setRockets] = useState([] as Rocket[]);
@@ -35,39 +36,7 @@ const RocketsPage = (props: any) => {
       <h1 className="flight-title"> Rockets </h1>
       <div className="rockets">
         {rockets.map((rocket, i) => (
-          <div className="rocket" key={i}>
-            <div className="card">
-              <img src={rocket.flickrImages[0]} className="img" />
-
-              <div className=" p-3 text-center mt-2">
-                <h4>{rocket.rocketName}</h4>
-                <p className="mt-0 text-black-50">{rocket.country}</p>
-              </div>
-              <div className=" p-3 stats mt-2">
-                <div className="d-flex justify-content-between">
-                  <span>Company</span>
-                  <span>{rocket.company}</span>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <span>Cost per launch</span>
-                  <span>
-                    {rocket.costPerLaunch.toLocaleString('en-US', {
-                      style: 'currency',
-                      currency: 'USD',
-                      minimumFractionDigits: 0,
-                    })}
-                  </span>
-                </div>
-                <div className="d-flex justify-content-between">
-                  <span>Success rate</span>
-                  <span>{rocket.successRatePct}</span>
-                </div>
-              </div>
-              <a className="wiki" href={rocket.wikipedia} target="_blank">
-                Wikipedia
-              </a>
-            </div>
-          </div>
+          <RocketComponent key={i} rocket={rocket} />
         ))}
       </div>
     </div>
