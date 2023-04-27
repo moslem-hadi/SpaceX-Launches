@@ -54,7 +54,6 @@ namespace SpaceXLaunches.Infrastructure.Services
             });
             return new PaginatedList<LaunchDto>(result, totalCount, query.PageNumber, query.PageSize);
         }
-
         public async Task<LaunchDto?> GetOneLaunch(int flightNumber, CancellationToken cancellationToken)
         {
             try
@@ -78,6 +77,21 @@ namespace SpaceXLaunches.Infrastructure.Services
             {
                 throw new AppException();
             }
+        }
+
+
+        public async Task<LaunchDto?> GetNextLaunch(CancellationToken cancellationToken)
+        {
+                var uri = $"{_urls.SpaceXBaseUrl}{_urls.LaunchApi}/next";
+                var response = await _apiClient.GetAsync(uri);
+                response.EnsureSuccessStatusCode();
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                var launch = JsonSerializer.Deserialize<Launch>(responseString, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+                return _mapper.Map<LaunchDto>(launch);
         }
 
         public async Task<PaginatedList<RocketDto>> GetRockets(GetAllRocketsQuery query, CancellationToken cancellationToken)
