@@ -8,6 +8,7 @@ public interface ILaunchService
 {
     Task<PaginatedList<LaunchDto>> GetLaunches(GetAllLaunchesQuery query, CancellationToken cancellationToken);
     Task<LaunchDto?> GetOneLaunch(int flightNumber, CancellationToken cancellationToken);
+    Task<LaunchDto?> GetNextLaunch(CancellationToken cancellationToken);
 
 
     //This has to be inside another service/interface. but I'm not going to do it now!!

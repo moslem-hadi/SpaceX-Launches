@@ -19,4 +19,13 @@ public class LaunchesController : ApiControllerBase
 
         return Ok(launch);
     }
+
+    [HttpGet("Next")]
+    public async Task<ActionResult<LaunchDto>> GetNextLaunch(CancellationToken cancellationToken)
+    {
+        var launch = await Mediator.Send(new GetNextLaunchQuery(), cancellationToken);
+        if (launch is null)
+            return NotFound();
+        return Ok(launch);
+    }
 }
