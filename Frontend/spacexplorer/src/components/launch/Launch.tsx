@@ -19,7 +19,7 @@ const LaunchComponent = ({ item }: MyChildProps) => {
           </p>
           <h3>{item.missionName}</h3>
           <h4>
-            {item.rocket.rocketName} | {item.rocket.rocketType}
+            {item.rocket?.rocketName} | {item.rocket?.rocketType}
           </h4>
           {item.launchSuccess ? (
             <span className="status success">Success</span>
@@ -44,8 +44,8 @@ const LaunchComponent = ({ item }: MyChildProps) => {
 
           <div className="links">
             <DetailLinkComponent flightNumber={item.flightNumber} />
-            <YoutubeLinkComponent link={item.links.videoLink} />
-            <WikipediaLinkComponent link={item.links.wikipedia} />
+            <YoutubeLinkComponent link={item.links?.videoLink} />
+            <WikipediaLinkComponent link={item.links?.wikipedia} />
           </div>
         </div>
       </div>

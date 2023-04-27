@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Polly.Retry;
+using Polly;
 using SpaceXLaunches.Application.Common.Exceptions;
 using SpaceXLaunches.Application.Common.Interfaces;
 using SpaceXLaunches.Application.Common.Models;
@@ -19,10 +21,12 @@ namespace SpaceXLaunches.Infrastructure.Services
 {
     public class SpaceXApiService : ILaunchService
     {
+        private const int httpClientTimeoutSeconds = 5;
+        private const string totalCountHeaderKey = "spacex-api-count";
+
         private readonly HttpClient _apiClient;
         private readonly ILogger<SpaceXApiService> _logger;
         private readonly UrlsConfig _urls;
-        private const string totalCountHeaderKey = "spacex-api-count";
         private readonly IMapper _mapper;
 
         public SpaceXApiService(HttpClient apiClient, ILogger<SpaceXApiService> logger, IOptions<UrlsConfig> urls, IMapper mapper)
@@ -31,30 +35,32 @@ namespace SpaceXLaunches.Infrastructure.Services
             _logger = logger;
             _urls = urls.Value;
             _mapper = mapper;
+            _apiClient.Timeout = TimeSpan.FromSeconds(httpClientTimeoutSeconds);
         }
 
-        public async Task<PaginatedList<LaunchDto>> GetLaunches(GetAllLaunchesQuery query)
+        public async Task<PaginatedList<LaunchDto>> GetLaunches(GetAllLaunchesQuery query, CancellationToken cancellationToken)
         {
-            var uri = $"{_urls.SpaceXBaseUrl}{_urls.LaunchApi}?limit={query.PageSize}&offset={query.PageSize * (query.PageNumber - 1)}";
-
-            var response = await _apiClient.GetAsync(uri);
-
-            response.EnsureSuccessStatusCode();
-
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            var launches = JsonSerializer.Deserialize<List<Launch>>(responseString, new JsonSerializerOptions
+            int totalCount = 0;
+            var result = new List<LaunchDto>();
+            await CreatePolicy().ExecuteAsync(async () =>
             {
-                PropertyNameCaseInsensitive = true
+                var uri = $"{_urls.SpaceXBaseUrl}{_urls.LaunchApi}?limit={query.PageSize}&offset={query.PageSize * (query.PageNumber - 1)}";
+                var response = await _apiClient.GetAsync(uri);
+                response.EnsureSuccessStatusCode();
+
+                var responseString = await response.Content.ReadAsStringAsync();
+                var launches = JsonSerializer.Deserialize<List<Launch>>(responseString, new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+                int.TryParse(response.Headers.GetValues(totalCountHeaderKey)?.FirstOrDefault(), out totalCount);
+                result = _mapper.Map<List<LaunchDto>>(launches);
             });
-
-            int.TryParse(response.Headers.GetValues(totalCountHeaderKey)?.FirstOrDefault(), out int totalCount);
-
-            var dtos = _mapper.Map<List<LaunchDto>>(launches);
-            return new PaginatedList<LaunchDto>(dtos, totalCount, query.PageNumber, query.PageSize);
+            return new PaginatedList<LaunchDto>(result, totalCount, query.PageNumber, query.PageSize);
         }
 
-        public async Task<LaunchDto?> GetOneLaunch(int flightNumber)
+        public async Task<LaunchDto?> GetOneLaunch(int flightNumber, CancellationToken cancellationToken)
         {
             try
             {
@@ -77,6 +83,21 @@ namespace SpaceXLaunches.Infrastructure.Services
             {
                 throw new AppException();
             }
+        }
+
+
+
+        private AsyncRetryPolicy CreatePolicy(int retries = 3)
+        {
+            return Policy.Handle<Exception>().
+                WaitAndRetryAsync(
+                    retryCount: retries,
+                    sleepDurationProvider: retry => TimeSpan.FromSeconds(2),
+                    onRetry: (exception, timeSpan, retry, ctx) =>
+                    {
+                        _logger.LogWarning(exception, "Exception {ExceptionType} with message {Message} detected on attempt {retry} of {retries}", exception.GetType().Name, exception.Message, retry, retries);
+                    }
+                );
         }
     }
 }

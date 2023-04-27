@@ -1,4 +1,6 @@
+using Serilog;
 using SpaceXLaunches.Infrastructure.Configs;
+using SpaceXLaunches.Infrastructure.Middlewares;
 using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,8 +25,19 @@ builder.Services.AddCors(options =>
 });
 
 
+
+var logger = new LoggerConfiguration()
+  .ReadFrom.Configuration(builder.Configuration)
+  .Enrich.FromLogContext()
+  .CreateLogger();
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
+
+
 var app = builder.Build();
 
+app.UseMiddleware(typeof(ExceptionHandlingMiddleware));
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

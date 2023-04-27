@@ -163,7 +163,27 @@ body {
 
 }
 
-
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
 
 .logo-bg {
   background-size: contain;
@@ -175,6 +195,10 @@ body {
   width: 35vw;
   margin-left: 5%;
   margin-top: -10%;
+}
+.logo-bg,
+.logo{
+  min-width: 270px;
 }
 
 h1.title {
@@ -488,45 +512,41 @@ header,.header {
   justify-content: center;
   margin: 3rem 0;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0.6rem;
 }
 .loader-container p{
   font-size: 1.4rem;
   font-weight: bold;
   letter-spacing: 0.5rem;}
-.loader {
-  display: block;
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgb(220, 220, 220) 40%,
-    rgb(170, 170, 170) 98%,
-    rgb(10, 10, 10) 100%
-  );
-  border-radius: 50%;
-  position: relative;
-}
-
-.loader:before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  border-radius: 100%;
-  border-bottom: 0 solid #ffffff05;
-  box-shadow: 0 -10px 20px 20px #ffffff40 inset,
-    0 -5px 15px 10px #ffffff50 inset, 0 -2px 5px #ffffff80 inset,
-    0 -3px 2px #ffffffbb inset, 0 2px 0px #ffffff, 0 2px 3px #ffffff,
-    0 5px 5px #ffffff90, 0 10px 15px #ffffff60, 0 10px 20px 20px #ffffff40;
-  filter: blur(3px);
-  animation: 2s rotate linear infinite;
-}
-
-@keyframes rotate {
-  100% { transform: rotate(360deg) }
-}
+  .loader {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: block;
+    margin:15px auto;
+    position: relative;
+    color: #FFF;
+    box-sizing: border-box;
+    animation: animloader 2s linear infinite;
+  }
+  
+  @keyframes animloader {
+    0% {
+      box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+    }
+    25% {
+      box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 2px;
+    }
+    50% {
+      box-shadow: 14px 0 0 -2px,  38px 0 0 -2px,  -14px 0 0 2px,  -38px 0 0 -2px;
+    }
+    75% {
+      box-shadow: 14px 0 0 2px,  38px 0 0 -2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+    }
+    100% {
+      box-shadow: 14px 0 0 -2px,  38px 0 0 2px,  -14px 0 0 -2px,  -38px 0 0 -2px;
+    }
+  }
     
  
 
@@ -558,4 +578,10 @@ header,.header {
 
 .image-404{
     pointer-events: none;
+}
+
+h1.flight-title {
+  font-size: 1.6rem;
+  text-align: center;
+  margin: 1rem 0 2rem 0;
 }
