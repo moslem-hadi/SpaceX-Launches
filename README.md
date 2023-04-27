@@ -1,7 +1,7 @@
-# SpaceX Launches
+# 🚀 SpaceX Launches 🚀
    
-![image](https://user-images.githubusercontent.com/9815699/234944855-791fde8a-07cc-4876-9c9b-1fe06e59f6de.png)
- 
+ <p align="center"><img width=35% src="https://user-images.githubusercontent.com/9815699/234944855-791fde8a-07cc-4876-9c9b-1fe06e59f6de.png"></p>
+
 What is used:
 - .Net 6
 - React 18
@@ -20,5 +20,8 @@ To Do:
 - [ ] Rate limiting
 - [ ] Upgrade to SpaceX api v4
 
-How to run"
-to be writen....
+How to run:
+
+```
+git clone ....
+```
