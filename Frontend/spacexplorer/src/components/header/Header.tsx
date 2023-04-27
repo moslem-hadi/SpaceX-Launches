@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom';
+
 const Header = () => {
   return (
     <header>
       <div id="navigation">
         <ul className="nav-links">
           <li className="nav-item">
-            <a href="/vehicles/falcon-9/">Timeline</a>
+            <Link to="/">Timeline</Link>
           </li>
           <li className="nav-item">
             <a href="/vehicles/falcon-heavy/">Launch List</a>
