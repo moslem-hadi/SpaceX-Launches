@@ -6,16 +6,10 @@ const Header = () => {
       <div id="navigation">
         <ul className="nav-links">
           <li className="nav-item">
-            <Link to="/">Timeline</Link>
+            <Link to="/">Launches</Link>
           </li>
           <li className="nav-item">
-            <a href="/vehicles/falcon-heavy/">Launch List</a>
-          </li>
-          <li className="nav-item">
-            <a href="/vehicles/dragon/">Rockets</a>
-          </li>
-          <li className="nav-item">
-            <a href="/vehicles/starship/">Crew Members</a>
+            <Link to="/rockets">Rockets</Link>
           </li>
         </ul>
       </div>

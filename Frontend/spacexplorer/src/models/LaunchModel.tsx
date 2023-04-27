@@ -16,9 +16,19 @@ export interface LaunchModel {
 }
 
 export interface Rocket {
+  id: number;
   rocketId: string;
   rocketName: string;
   rocketType: string;
+  active: boolean;
+  costPerLaunch: number;
+  successRatePct: number;
+  firstFlight: string;
+  country: string;
+  company: string;
+  flickrImages: string[];
+  wikipedia: string;
+  description: string;
 }
 
 export interface LaunchSite {

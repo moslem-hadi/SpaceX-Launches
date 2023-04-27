@@ -6,6 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import ViewPage from './pages/View';
 import NotFound from './pages/NotFound';
+import RocketsPage from './pages/Rockets';
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/rockets" element={<RocketsPage />} />
         <Route path="/view/:flightNumber" element={<ViewPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
