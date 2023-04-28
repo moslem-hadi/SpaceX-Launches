@@ -12,24 +12,22 @@ const TimeLineComponent = () => {
   const [items, setItems] = useState([] as LaunchModel[]);
   const [pageNumber, setPageNumber] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-    try {
-      getList();
-    } catch {
-      errorHappened();
-    } finally {
-      setLoading(false);
-    }
+    getList();
   }, []);
 
   const getList = async () => {
-    let response: any = await spaceXplorerApi.getLaunches(pageNumber, 10);
-    setHasNextPage(response.hasNextPage);
-    setItems([...items, ...response.items]);
-    setPageNumber(pageNumber + 1);
+    try {
+      let response: any = await spaceXplorerApi.getLaunches(pageNumber, 10);
+      setHasNextPage(response.hasNextPage);
+      setItems([...items, ...response.items]);
+      setPageNumber(pageNumber + 1);
+    } catch {
+      setLoading(false);
+      errorHappened();
+    }
   };
 
   const fetchMoreData = () => {
