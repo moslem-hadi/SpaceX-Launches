@@ -12,6 +12,8 @@ What is used:
 - Exception Handling
 - MediatR Pipelines
 - AutoMapper
+- NUnit / FluentAssertions / AutoFixture / Moq / MockHttp
+
 
 To Do:
 - [x] Polly
@@ -36,8 +38,10 @@ docker-compose up -d
 ```
 
 **Make sure that ports 3000 and 7034 are free**
+
+  
 ---
-Another approach is to 
+*Another approach is to:*
 - open the backend solution and run the SpaceXLaunches.WebApi project on port 7034
 - open frontend project in cmd and run
 ```
