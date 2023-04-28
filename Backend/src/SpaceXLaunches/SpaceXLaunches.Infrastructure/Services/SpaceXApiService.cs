@@ -27,7 +27,7 @@ namespace SpaceXLaunches.Infrastructure.Services
 
         public SpaceXApiService(HttpClient apiClient, ILogger<SpaceXApiService> logger, IOptions<UrlsConfig> urls, IMapper mapper)
         {
-            _apiClient = apiClient;
+            _apiClient = apiClient ?? throw new ArgumentNullException(nameof(apiClient));
             _logger = logger;
             _urls = urls.Value;
             _mapper = mapper;

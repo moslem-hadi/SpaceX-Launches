@@ -2,6 +2,13 @@
 
 public class RocketsController : ApiControllerBase
 {
+
+    private ISender? Mediator;
+
+    public RocketsController(ISender? mediator)
+    {
+        Mediator = mediator;
+    }
     [HttpGet]
     public async Task<PaginatedList<RocketDto>> GetAll([FromQuery] GetAllRocketsQuery query, CancellationToken cancellationToken)
     {

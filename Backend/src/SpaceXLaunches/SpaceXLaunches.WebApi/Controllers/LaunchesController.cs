@@ -2,6 +2,11 @@
 
 public class LaunchesController : ApiControllerBase
 {
+    private ISender Mediator;
+    public LaunchesController(ISender mediator)
+    {
+        Mediator = mediator;
+    }
     [HttpGet]
     public async Task<PaginatedList<LaunchDto>> GetAll([FromQuery] GetAllLaunchesQuery query, CancellationToken cancellationToken)
     {
