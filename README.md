@@ -15,7 +15,7 @@ What is used:
 
 To Do:
 - [x] Polly
-- [ ] Unit tests
+- [x] Unit tests
 - [ ] Authentication
 - [ ] Rate limiting
 - [ ] Api versioning
@@ -24,5 +24,23 @@ To Do:
 How to run:
 
 ```
-git clone ....
+git clone https://github.com/moslem-hadi/SpaceX-Launches.git
+```
+Then go to the folder:
+```
+cd SpaceX-Launches
+```
+And run docker compose:
+```
+docker-compose up -d
+```
+
+**Make sure that ports 3000 and 7034 are free**
+---
+Another approach is to 
+- open the backend solution and run the SpaceXLaunches.WebApi project on port 7034
+- open frontend project in cmd and run
+```
+npm i
+npm start
 ```
