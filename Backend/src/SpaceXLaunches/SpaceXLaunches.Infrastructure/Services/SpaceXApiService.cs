@@ -40,7 +40,7 @@ namespace SpaceXLaunches.Infrastructure.Services
             var result = new List<LaunchDto>();
             await CreatePolicy().ExecuteAsync(async () =>
             {
-                var uri = $"{_urls.SpaceXBaseUrl}{_urls.LaunchApi}?limit={query.PageSize}&offset={query.PageSize * (query.PageNumber - 1)}";
+                var uri = $"{_urls?.SpaceXBaseUrl}{_urls?.LaunchApi}?limit={query.PageSize}&offset={query.PageSize * (query.PageNumber - 1)}";
                 var response = await _apiClient.GetAsync(uri);
                 response.EnsureSuccessStatusCode();
 
@@ -59,7 +59,7 @@ namespace SpaceXLaunches.Infrastructure.Services
         {
             try
             {
-                var uri = $"{_urls.SpaceXBaseUrl}{_urls.LaunchApi}/{flightNumber}";
+                var uri = $"{_urls?.SpaceXBaseUrl}{_urls?.LaunchApi}/{flightNumber}";
                 var response = await _apiClient.GetAsync(uri);
                 response.EnsureSuccessStatusCode();
                 var responseString = await response.Content.ReadAsStringAsync();
@@ -74,7 +74,7 @@ namespace SpaceXLaunches.Infrastructure.Services
             {
                 throw new NotFoundException();
             }
-            catch
+            catch(Exception ex)
             {
                 throw new AppException();
             }
