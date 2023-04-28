@@ -1,6 +1,6 @@
 # 🚀 SpaceX Launches 🚀
    
- <p align="center"><img width=35% src="https://user-images.githubusercontent.com/9815699/234944855-791fde8a-07cc-4876-9c9b-1fe06e59f6de.png"></p>
+ <p align="center"><img width=70% src="https://user-images.githubusercontent.com/9815699/234944855-791fde8a-07cc-4876-9c9b-1fe06e59f6de.png"></p>
 
 What is used:
 - .Net 6
@@ -18,6 +18,7 @@ To Do:
 - [ ] Unit tests
 - [ ] Authentication
 - [ ] Rate limiting
+- [ ] Api versioning
 - [ ] Upgrade to SpaceX api v4
 
 How to run:
