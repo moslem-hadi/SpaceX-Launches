@@ -24,6 +24,7 @@ const TimeLineComponent = () => {
       setHasNextPage(response.hasNextPage);
       setItems([...items, ...response.items]);
       setPageNumber(pageNumber + 1);
+      setLoading(false);
     } catch {
       setLoading(false);
       errorHappened();
