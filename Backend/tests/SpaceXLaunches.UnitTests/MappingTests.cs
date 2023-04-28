@@ -1,7 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using AutoMapper; 
-using NUnit.Framework;
-using SpaceXLaunches.Application.Common.Mappings;
 using SpaceXLaunches.Application.Dtos;
 using SpaceXLaunches.Domain.Models;
 

@@ -1,1 +1,12 @@
 global using NUnit.Framework;
+global using AutoFixture;
+global using AutoMapper;
+global using FluentAssertions;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using Moq;
+global using RichardSzalay.MockHttp;
+global using SpaceXLaunches.Application.Common.Mappings;
+global using SpaceXLaunches.Infrastructure.Configs;
+global using SpaceXLaunches.Infrastructure.Services;
+global using System.Net;
