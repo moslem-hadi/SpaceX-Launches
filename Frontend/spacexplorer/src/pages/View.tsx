@@ -7,10 +7,12 @@ import LoadingComponent from '../components/loading/Loading';
 import YoutubeLinkComponent from '../components/launch/links/YoutubeLink';
 import WikipediaLinkComponent from '../components/launch/links/WikipediaLink';
 import Moment from 'moment';
+import NotFound from './NotFound';
 
 const ViewPage = (props: any) => {
   const [launch, setLaunchModel] = useState({} as LaunchModel);
   const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
   const flightNumber = useParams().flightNumber as string;
 
   useEffect(() => {
@@ -24,16 +26,22 @@ const ViewPage = (props: any) => {
         parseInt(flightNumber)
       );
       setLaunchModel(response);
-    } catch {
-      toast.error('Sorry :( An error occurred while loading the data.');
+    } catch(error:any) 
+    {
+      if(error?.response?.status == 404)
+        setNotFound(true);
+      else
+        toast.error('Sorry :( An error occurred while loading the data.');
     } finally {
       setLoading(false);
     }
   };
 
-  return loading ? (
+  return loading ? 
     <LoadingComponent />
-  ) : (
+  : 
+  notFound ? <NotFound/> :
+  (
     <div className="container">
       <h1 className="flight-title"> Flight: {launch.flightNumber} </h1>
 

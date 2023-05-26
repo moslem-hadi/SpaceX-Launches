@@ -1,5 +1,5 @@
 const apiConfig = {
-  baseUrl: 'https://localhost:7034/api/',
+  baseUrl: 'http://localhost:7033/api/',
   apiKey: 'xxxxXxxxx',
 };
 

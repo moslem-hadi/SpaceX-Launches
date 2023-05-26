@@ -1,12 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using SpaceXLaunches.Application.Common.Exceptions;
 
 namespace SpaceXLaunches.Infrastructure.Middlewares
 {
@@ -26,6 +21,10 @@ namespace SpaceXLaunches.Infrastructure.Middlewares
             {
                 await requestDelegate(context);
             }
+            catch (NotFoundException ex)
+            {
+                await HandleNotFoundException(context, ex);
+            }
             catch (Exception ex)
             {
                 await HandleException(context, ex);
@@ -40,6 +39,14 @@ namespace SpaceXLaunches.Infrastructure.Middlewares
             var errorMessage = System.Text.Json.JsonSerializer.Serialize(errorMessageObject);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            return context.Response.WriteAsync(errorMessage);
+        }
+        private Task HandleNotFoundException(HttpContext context, Exception ex)
+        {
+            var errorMessageObject = new { Message = "The entity you are looking for can't be found!", Code = "404 Not Found" };
+            var errorMessage = System.Text.Json.JsonSerializer.Serialize(errorMessageObject);
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.NotFound;
             return context.Response.WriteAsync(errorMessage);
         }
 

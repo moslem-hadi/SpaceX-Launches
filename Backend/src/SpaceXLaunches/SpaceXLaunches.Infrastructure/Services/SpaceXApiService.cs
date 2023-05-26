@@ -55,6 +55,7 @@ namespace SpaceXLaunches.Infrastructure.Services
             });
             return new PaginatedList<LaunchDto>(result, totalCount, query.PageNumber, query.PageSize);
         }
+       
         public async Task<LaunchDto?> GetOneLaunch(int flightNumber, CancellationToken cancellationToken)
         {
             try
@@ -79,7 +80,6 @@ namespace SpaceXLaunches.Infrastructure.Services
                 throw new AppException();
             }
         }
-
 
         public async Task<LaunchDto?> GetNextLaunch(CancellationToken cancellationToken)
         {
@@ -117,6 +117,8 @@ namespace SpaceXLaunches.Infrastructure.Services
             return new PaginatedList<RocketDto>(result, totalCount, query.PageNumber, query.PageSize);
 
         }
+
+
 
         private AsyncRetryPolicy CreatePolicy(int retries = 3)
         {
