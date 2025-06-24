@@ -3,7 +3,7 @@
  <p align="center"><img width=70% src="https://user-images.githubusercontent.com/9815699/234944855-791fde8a-07cc-4876-9c9b-1fe06e59f6de.png"></p>
 
 What is used:
-- .Net 6
+- .Net 8
 - React 18
 - CQRS + MdeiatR
 - Polly and Retry
@@ -50,7 +50,7 @@ npm start
 ```
 
 ## Here's what I did:  
-I used .Net 6 and I have  4 projects:  
+I used .Net 8 and I have  4 projects:  
 ![image](https://github.com/moslem-hadi/SpaceX-Launches/assets/9815699/f74476d1-0896-48d9-b5d3-c71784b2588d)  
   
 This structure is based on a clean architecture solution. the Infrastructure layer is responsible for implementing the Application layer.   
