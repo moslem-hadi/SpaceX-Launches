@@ -38,7 +38,6 @@ public class MappingTests
         if (type.GetConstructor(Type.EmptyTypes) != null)
             return Activator.CreateInstance(type)!;
 
-        // Type without parameterless constructor
         return FormatterServices.GetUninitializedObject(type);
     }
 }

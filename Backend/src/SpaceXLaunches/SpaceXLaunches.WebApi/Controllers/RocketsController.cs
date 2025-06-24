@@ -1,6 +1,8 @@
 ﻿namespace SpaceXLaunches.WebApi.Controllers;
 
-public class RocketsController : ApiControllerBase
+[ApiController]
+[Route("api/[controller]")]
+public class RocketsController : ControllerBase
 {
 
     private ISender? Mediator;

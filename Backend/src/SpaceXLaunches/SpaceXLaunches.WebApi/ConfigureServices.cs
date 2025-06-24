@@ -1,9 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
-using Serilog;
-using SpaceXLaunches.Application.Common.Interfaces;
+﻿using Serilog;
 using SpaceXLaunches.Infrastructure.Configs;
-using SpaceXLaunches.Infrastructure.Services;
-using System;
 
 namespace Microsoft.Extensions.DependencyInjection;
 

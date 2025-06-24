@@ -4,7 +4,7 @@ namespace SpaceXLaunches.Application.Common.Models;
 
 public class PaginatedList<T>
 {
-    public IReadOnlyCollection<T> Items { get; }
+    public IReadOnlyCollection<T> Items { get; } = Array.Empty<T>();
     public int PageNumber { get; }
     public int TotalPages { get; }
     public int TotalCount { get; }

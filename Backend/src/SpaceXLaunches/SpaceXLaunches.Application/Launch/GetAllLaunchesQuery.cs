@@ -15,6 +15,6 @@ public class GetAllLaunchesQueryHandler : IRequestHandler<GetAllLaunchesQuery, P
 
     public async Task<PaginatedList<LaunchDto>> Handle(GetAllLaunchesQuery request, CancellationToken cancellationToken)
     {
-        return await _launchService.GetLaunches(request, cancellationToken);
+        return await _launchService.GetLaunchesAsync(request, cancellationToken);
     }
 }

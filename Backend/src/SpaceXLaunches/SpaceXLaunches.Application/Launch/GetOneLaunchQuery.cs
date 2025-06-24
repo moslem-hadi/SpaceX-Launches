@@ -30,7 +30,7 @@ public class GetOneLaunchQueryHandler : IRequestHandler<GetOneLaunchQuery, Launc
 
         if (!_memoryCache.TryGetValue(CacheKeys.SingleLaunch(request.FlightNumber), out LaunchDto? launchData))
         {
-            launchData = await _launchService.GetOneLaunch(request.FlightNumber, cancellationToken);
+            launchData = await _launchService.GetOneLaunchAsync(request.FlightNumber, cancellationToken);
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
                 .SetSlidingExpiration(TimeSpan.FromMinutes(cacheExpirationMinutes));

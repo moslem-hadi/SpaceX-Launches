@@ -8,5 +8,5 @@ public class LaunchFailureDetails
     public int Time { get; set; }
 
     [JsonPropertyName("reason")]
-    public string Reason { get; set; }
+    public string? Reason { get; set; }
 }

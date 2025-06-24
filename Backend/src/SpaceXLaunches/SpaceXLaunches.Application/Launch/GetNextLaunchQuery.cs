@@ -23,7 +23,7 @@ public class GetNextLaunchQueryHandler : IRequestHandler<GetNextLaunchQuery, Lau
 
         if (!_memoryCache.TryGetValue(CacheKeys.NextLaunch, out LaunchDto? launchData))
         {
-            launchData = await _launchService.GetNextLaunch(cancellationToken);
+            launchData = await _launchService.GetNextLaunchAsync(cancellationToken);
 
             var cacheEntryOptions = new MemoryCacheEntryOptions()
                 .SetSlidingExpiration(TimeSpan.FromMinutes(cacheExpirationMinutes));

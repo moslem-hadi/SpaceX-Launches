@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using MediatR;
 using SpaceXLaunches.Application.Common.Behaviours;
 
 namespace Microsoft.Extensions.DependencyInjection;

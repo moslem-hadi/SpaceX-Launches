@@ -31,7 +31,6 @@ public class ServicesTests
     [Test] 
     public async Task GetOneLaunch_Returns_CorrectDto()
     {
-        // ARRANGE
         var flightNumber = 1; 
         var testUri = fixture.Create<Uri>() + flightNumber.ToString();
 
@@ -43,12 +42,10 @@ public class ServicesTests
         http.BaseAddress = new Uri(testUri);
         var sut = new SpaceXApiService(http, _loggerMock.Object,_urlsMock.Object, _mapper);
 
-        // ACT
-        var result = await sut.GetOneLaunch(1, cancelationTokenMock);
+        var result = await sut.GetOneLaunchAsync(1, cancelationTokenMock);
 
-        // ASSERT
         result.Should().NotBeNull();
-        result.FlightNumber.Should().Be(flightNumber);
+        result!.FlightNumber.Should().Be(flightNumber);
 
     } 
 }
